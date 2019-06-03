@@ -1,6 +1,8 @@
 class ImagesController < ApplicationController
   before_action :set_image, only: [:show, :edit, :update, :destroy]
 
+  before_action :wait, only: [:index, :show, :edit, :update, :destroy]
+
   # GET /images
   # GET /images.json
   def index
@@ -14,19 +16,16 @@ class ImagesController < ApplicationController
 
   # GET /images/new
   def new
-    sleep(3300)
     @image = Image.new
   end
 
   # GET /images/1/edit
   def edit
-    sleep(3300)
   end
 
   # POST /images
   # POST /images.json
   def create
-    sleep(3300)
     @image = Image.new(image_params)
 
     respond_to do |format|
@@ -43,7 +42,6 @@ class ImagesController < ApplicationController
   # PATCH/PUT /images/1
   # PATCH/PUT /images/1.json
   def update
-    sleep(3300)
     respond_to do |format|
       if @image.update(image_params)
         format.html { redirect_to @image, notice: 'Image was successfully updated.' }
@@ -58,7 +56,6 @@ class ImagesController < ApplicationController
   # DELETE /images/1
   # DELETE /images/1.json
   def destroy
-    sleep(3300)
     @image.destroy
     respond_to do |format|
       format.html { redirect_to images_url, notice: 'Image was successfully destroyed.' }
@@ -75,5 +72,10 @@ class ImagesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def image_params
       params.require(:image).permit(:file_name)
+    end
+
+    private
+    def wait()
+      sleep(300)
     end
 end
