@@ -4,6 +4,7 @@ class ImagesController < ApplicationController
   # GET /images
   # GET /images.json
   def index
+    sleep(330)
     @images = Image.all
   end
 
